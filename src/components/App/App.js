@@ -12,6 +12,10 @@ class App extends Component {
     }
   }
 
+  componentDidUpdate = () => {
+    console.log("App updated. App state: " + this.state)
+  }
+
   componentDidMount = () => {
     getTricks().then( (data) => {
       this.updateTricks(data)
@@ -21,6 +25,12 @@ class App extends Component {
   updateTricks = (tricksData) => {
     this.setState({tricks: tricksData})
     console.log(tricksData)
+  }
+
+  saveTrick = (trickData) => {
+    this.setState({
+      tricks: [...this.state.tricks, trickData]
+    })
   }
 
   render() {
@@ -34,7 +44,7 @@ class App extends Component {
       <div className="App">
         <h1>Sick Trick Wish List</h1>
         <main>
-          <TrickForm />
+          <TrickForm saveTrick={this.saveTrick} />
           <div className="trick-container">
           { tricks }
           </div>

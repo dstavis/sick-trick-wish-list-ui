@@ -5,20 +5,17 @@ class TrickForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      trickName: "",
-      trickStance: "",
+      trickName: "Default",
+      trickStance: "regular",
     }
+    this.saveTrick = props.saveTrick;
   }
 
   componentDidMount = () => {
   }
 
-  submitTrick = () => {
-
-  }
-
   componentDidUpdate = () => {
-    console.log(this.state)
+    console.log("Form updated. State: ", this.state)
   }
 
   handleChange = ({target}) => {
@@ -30,10 +27,20 @@ class TrickForm extends Component {
     })
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const trick = {
+      name: this.state.trickName,
+      stance: this.state.trickStance
+    }
+    this.saveTrick(trick)
+  }
+
   render() {
 
     return (
-      <form className="trick-form">
+      <form className="trick-form" onSubmit={this.handleSubmit}>
+        <label htmlFor="trickStance" required >Select your stance: </label>
         <select name="trickStance" onChange={this.handleChange}>
           <option value="regular">Regular</option>
           <option value="switch">Switch</option>
@@ -44,7 +51,7 @@ class TrickForm extends Component {
         </label>
         <input name="trickName" value={this.state.name} onChange={this.handleChange}>
         </input>
-        <label htmlFor="trickStance" required >Select your stance: </label>
+        <button>Send it!</button>
       </form>
     );
   }
