@@ -2,6 +2,7 @@ import { Component } from 'react';
 import './App.css';
 import getTricks from "../../ApiCalls"
 import Trick from '../Trick/Trick';
+import TrickForm from "../TrickForm/TrickForm"
 
 class App extends Component {
   constructor() {
@@ -32,6 +33,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Sick Trick Wish List</h1>
+        <TrickForm />
         { tricks }
       </div>
     );
