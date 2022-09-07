@@ -30,6 +30,11 @@ class TrickForm extends Component {
         </label>
         <input name="trick-name" value={this.state.name} onChange={ (e) => {  this.updateTrick(e.target.value)}}>
         </input>
+        <label htmlFor="trick-stance" required >Select your stance: </label>
+        <select name="trick-stance">
+          <option>Regular</option>
+          <option>Switch</option>
+        </select>
       </form>
     );
   }

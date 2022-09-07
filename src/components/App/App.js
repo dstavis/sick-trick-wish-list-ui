@@ -33,8 +33,12 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Sick Trick Wish List</h1>
-        <TrickForm />
-        { tricks }
+        <main>
+          <TrickForm />
+          <div className="trick-container">
+          { tricks }
+          </div>
+        </main>
       </div>
     );
   }
