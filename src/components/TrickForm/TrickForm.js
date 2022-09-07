@@ -5,8 +5,10 @@ class TrickForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      trickName: "Default",
+      trickName: "default",
       trickStance: "regular",
+      trickObstacle: "flatground",
+      trickLink: "http://www.example.com"
     }
     this.saveTrick = props.saveTrick;
   }
@@ -31,7 +33,9 @@ class TrickForm extends Component {
     event.preventDefault()
     const trick = {
       name: this.state.trickName,
-      stance: this.state.trickStance
+      stance: this.state.trickStance,
+      obstacle: this.state.trickObstacle,
+      tutorial: this.state.trickLink,
     }
     this.saveTrick(trick)
   }
@@ -40,6 +44,7 @@ class TrickForm extends Component {
 
     return (
       <form className="trick-form" onSubmit={this.handleSubmit}>
+        
         <label htmlFor="trickStance" required >Select your stance: </label>
         <select name="trickStance" onChange={this.handleChange}>
           <option value="regular">Regular</option>
@@ -49,8 +54,23 @@ class TrickForm extends Component {
         <label htmlFor="trickName">
           Name: 
         </label>
-        <input name="trickName" value={this.state.name} onChange={this.handleChange}>
+        <input name="trickName" value={this.state.trickName} onChange={this.handleChange}>
         </input>
+        
+        <label htmlFor="trickObstacle" required >Obstacle: </label>
+        <select name="trickObstacle" onChange={this.handleChange}>
+          <option value="flatground">Flatground</option>
+          <option value="ledge">Ledge</option>
+          <option value="stairs">Stairs</option>
+          <option value="pool">Pool</option>
+        </select>
+
+        <label htmlFor="trickLink">
+          Link to Tutorial:  
+        </label>
+        <input name="trickLink" value={this.state.trickLink} onChange={this.handleChange}>
+        </input>
+
         <button>Send it!</button>
       </form>
     );
