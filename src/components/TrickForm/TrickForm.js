@@ -5,7 +5,8 @@ class TrickForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: ""
+      trickName: "",
+      trickStance: "",
     }
   }
 
@@ -16,25 +17,34 @@ class TrickForm extends Component {
 
   }
 
-  updateTrick = (name) => {
-    this.setState({name: name})
+  componentDidUpdate = () => {
     console.log(this.state)
+  }
+
+  handleChange = ({target}) => {
+    const name = target.name;
+    const value = target.value;
+    
+    this.setState({
+      [name]: value,
+    })
   }
 
   render() {
 
     return (
       <form className="trick-form">
-        <label htmlFor="trick-name">
+        <select name="trickStance" onChange={this.handleChange}>
+          <option value="regular">Regular</option>
+          <option value="switch">Switch</option>
+        </select>
+
+        <label htmlFor="trickName">
           Name: 
         </label>
-        <input name="trick-name" value={this.state.name} onChange={ (e) => {  this.updateTrick(e.target.value)}}>
+        <input name="trickName" value={this.state.name} onChange={this.handleChange}>
         </input>
-        <label htmlFor="trick-stance" required >Select your stance: </label>
-        <select name="trick-stance">
-          <option>Regular</option>
-          <option>Switch</option>
-        </select>
+        <label htmlFor="trickStance" required >Select your stance: </label>
       </form>
     );
   }
